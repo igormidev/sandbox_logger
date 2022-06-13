@@ -57,8 +57,9 @@ void main() {
 
   // Log in yellow a warning to be aware when something happends
   SandLog.warning(
-    header: 'The list coming from the api is huge!\n'
-        'Beware of large orders like this...',
+    header: 'The document coming from the api is huge! '
+        'Beware of large orders like this... A large file '
+        'like this will spend a lot of the user\'s internet to download it.',
     text: ' [ Imagine here a huge value ]',
   );
 

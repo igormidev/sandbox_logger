@@ -1,6 +1,6 @@
 name: sandbox_logger
 description: A simple tool for more beautiful and colorful console prints.
-version: 1.0.1
+version: 1.0.2
 homepage: https://www.linkedin.com/in/igor-miranda-souza-224a28208/
 github: https://github.com/igormidev/sandbox_logger
 documentation: https://github.com/igormidev/sandbox_logger/blob/main/README.md
