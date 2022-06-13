@@ -1,4 +1,3 @@
-import 'dart:convert';
 import 'package:sandbox_logger/sandbox_logger.dart';
 
 void main() {
@@ -30,8 +29,9 @@ void main() {
 
   // Log in yellow a warning to be aware when something happends
   SandLog.warning(
-    header: 'The list coming from the api is huge!\n'
-        'Beware of large orders like this...',
+    header: 'The document coming from the api is huge! '
+        'Beware of large orders like this... A large file '
+        'like this will spend a lot of the user\'s internet to download it.',
     text: ' [ Imagine here a huge value ]',
   );
 
@@ -70,22 +70,6 @@ class _ModelForExemple {
     required this.address,
   });
 
-  _ModelForExemple copyWith({
-    String? name,
-    int? age,
-    bool? hasBugs,
-    double? height,
-    Address? address,
-  }) {
-    return _ModelForExemple(
-      name: name ?? this.name,
-      age: age ?? this.age,
-      hasBugs: hasBugs ?? this.hasBugs,
-      height: height ?? this.height,
-      address: address ?? this.address,
-    );
-  }
-
   Map<String, dynamic> toMap() {
     return {
       'name': name,
@@ -96,65 +80,15 @@ class _ModelForExemple {
     };
   }
 
-  factory _ModelForExemple.fromMap(Map<String, dynamic> map) {
-    return _ModelForExemple(
-      name: map['name'] ?? '',
-      age: map['age']?.toInt() ?? 0,
-      hasBugs: map['hasBugs'] ?? false,
-      height: map['height']?.toDouble() ?? 0.0,
-      address: Address.fromMap(map['address']),
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory _ModelForExemple.fromJson(String source) =>
-      _ModelForExemple.fromMap(json.decode(source));
-
   @override
-  String toString() {
-    return '_ModelForExemple(name: $name, age: $age, hasBugs: $hasBugs, height: $height, address: $address)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is _ModelForExemple &&
-        other.name == name &&
-        other.age == age &&
-        other.hasBugs == hasBugs &&
-        other.height == height &&
-        other.address == address;
-  }
-
-  @override
-  int get hashCode {
-    return name.hashCode ^
-        age.hashCode ^
-        hasBugs.hashCode ^
-        height.hashCode ^
-        address.hashCode;
-  }
+  String toString() =>
+      '_ModelForExemple(name: $name, age: $age, hasBugs: $hasBugs, height: $height, address: $address)';
 }
 
 class Address {
   final String country;
   final String city;
-  Address({
-    required this.country,
-    required this.city,
-  });
-
-  Address copyWith({
-    String? country,
-    String? city,
-  }) {
-    return Address(
-      country: country ?? this.country,
-      city: city ?? this.city,
-    );
-  }
+  Address({required this.country, required this.city});
 
   Map<String, dynamic> toMap() {
     return {
@@ -163,28 +97,6 @@ class Address {
     };
   }
 
-  factory Address.fromMap(Map<String, dynamic> map) {
-    return Address(
-      country: map['country'] ?? '',
-      city: map['city'] ?? '',
-    );
-  }
-
-  String toJson() => json.encode(toMap());
-
-  factory Address.fromJson(String source) =>
-      Address.fromMap(json.decode(source));
-
   @override
   String toString() => 'Address(country: $country, city: $city)';
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is Address && other.country == country && other.city == city;
-  }
-
-  @override
-  int get hashCode => country.hashCode ^ city.hashCode;
 }
