@@ -3,7 +3,7 @@ description: A simple tool for more beautiful and colorful console prints.
 version: 1.0.0
 homepage: https://www.linkedin.com/in/igor-miranda-souza-224a28208/
 github: https://github.com/igormidev/sandbox_logger
-documentation: https://github.com/igormidev/sandbox_logger/README.md
+documentation: https://github.com/igormidev/sandbox_logger/blob/main/README.md
 
 environment:
   sdk: '>=2.14.4 <3.0.0'
