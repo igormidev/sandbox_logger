@@ -25,7 +25,7 @@ import 'package:sandbox_logger/sandbox_logger.dart';
 ## Usage Exemples
 
 ### Exemple of a quick log of object:
-*Colors, icons can be changes. And the headler, map and text are optional.*
+*Colors, icons can be changed. The parameter headler, map and text are optional.*
 
 ```dart
 void main() {
@@ -71,7 +71,10 @@ void main() {
 ```
 
 The console:
+
 ![](https://raw.githubusercontent.com/igormidev/sandbox_logger/main/images/simple_log_exemple.png)
+
+---
 
 ### Example of a more complex, beautiful and `personalized` print:
 
@@ -94,6 +97,9 @@ void main() {
   // The normal sequence is a [headler] first, then an indeterminate
   // number of [middle] and ending with [bottom].that
   //
+  // Use [LogStringModel] to add a string and [LogMapModel] when you
+  // want to add a object to the list of [LogModel] that will be printed.
+  //
   // Using only [headler] and ending with [bottom] without [middle]
   // in the sequence is totaly okay to.
   SandLog.logTemplateBuilder(<LogModel>[
@@ -106,9 +112,12 @@ void main() {
 ```
 
 The console:
+
 ![](https://raw.githubusercontent.com/igormidev/sandbox_logger/main/images/custom_log_exemple.png)
 
 See the complete code in the `/example` folder. 
+
+
 
 ## Important!
 
