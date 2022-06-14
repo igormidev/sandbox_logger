@@ -8,7 +8,9 @@ part 'enums.dart';
 part 'log_type_model.dart';
 part 'extensions.dart';
 
-class SandLog {
+abstract class SandLog {
+  const SandLog._();
+
   /// A ready-made [text] log template for errors with default red
   /// [color] and ⛔ as the default [errorIcon] that has an optional
   /// [header] with the title of the error and the possibility to log a [object].
@@ -112,10 +114,11 @@ class SandLog {
             .replaceAll('ÇÇ', '${model.icon}');
       }
       if (template == null) return;
+
       templates
           .add(model.color.anciCode + template + LogColor.resetColor.anciCode);
     }
 
-    print(templates.join(''));
+    dev.log(templates.join(''));
   }
 }

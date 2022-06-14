@@ -43,11 +43,11 @@ void main() {
 
   // Log in green when your methods have success!
   SandLog.success(
-    header: 'Requisição feita com sucesso!',
+    header: 'Request made successfully!',
     text: 'Status code: 200',
     map: exempleModel.toMap(),
   );
-
+  
   // Log in red in your error handler when you got a error.
   // An error is bad, but an error without a nice log is worse.
   SandLog.error(

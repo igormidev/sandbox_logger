@@ -1,5 +1,8 @@
+## 1.0.4
+- Readme is better now.
+
 ## 1.0.3
-- `print` has changed to `log`
+- `print` has changed to `log`.
 
 ## 1.0.2
 - Example changed to be more didactic.
