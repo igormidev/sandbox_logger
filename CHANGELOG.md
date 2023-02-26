@@ -1,5 +1,8 @@
-## [2.0.0] - Big Update
-- **BREAKING:** Changed way of logging, using a builder pattern
+## [2.0.1]
+- Document assert 
+
+## [2.0.0] Big Update
+- **Breaking changes:** Changed way of logging, using a builder pattern
 - Readme update
 - 100% test coverage in all usecases
 - Implemented the builder pattern
