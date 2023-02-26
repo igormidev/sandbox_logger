@@ -95,7 +95,7 @@ class SandLog {
         borderType: log.borderType,
         color: log.color ?? _defaultConfiguration.defaultColor,
       );
-      print(lines.join('\n'));
+      print('\n${lines.join('\n')}');
     }
   }
 
@@ -144,7 +144,7 @@ class SandLog {
           logModel: logModel, borderType: borderType, color: color);
       lines.addAll(linesWithColorAndBorder);
     });
-    print(lines.join('\n'));
+    print('\n${lines.join('\n')}');
   }
 
   List<String> _getLogLines({
