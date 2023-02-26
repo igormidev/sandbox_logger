@@ -1,7 +1,11 @@
 name: sandbox_logger
-description: A starting point for Dart libraries or applications.
-version: 1.0.0
-# repository: https://github.com/my_org/my_repo
+description: A simple tool for more beautiful and colorful console prints.
+version: 2.0.0
+
+repository: https://github.com/igormidev/sandbox_logger
+homepage: https://github.com/igormidev/sandbox_logger
+github: https://github.com/igormidev/sandbox_logger
+documentation: https://github.com/igormidev/sandbox_logger/blob/main/README.md
 
 environment:
   sdk: '>=2.19.0 <3.0.0'
