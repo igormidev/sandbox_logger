@@ -1,4 +1,4 @@
-part of 'sand_custom_logs.dart';
+part of 'package:sandbox_logger/sandbox_logger.dart';
 
 enum LogColor {
   green,

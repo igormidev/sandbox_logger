@@ -1,4 +1,4 @@
-part of 'sand_custom_logs.dart';
+part of 'package:sandbox_logger/sandbox_logger.dart';
 
 /// This resets the color to the default CLI color
 const String _ansiResetColor = '\x1B[0m';
@@ -12,3 +12,5 @@ const String _ansiBlueColor = '\x1b[34m';
 const String _ansiMagentaColor = '\x1b[35m';
 const String _ansiCyanColor = '\x1b[36m';
 const String _ansiWhiteColor = '\x1b[37m';
+
+const String _pad = '  ';

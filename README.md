@@ -1,9 +1,13 @@
 # Sandbox Logger
-A simple tool for more beautiful and colorful console prints.
+A simple tool for beautiful and colorful console prints.
 
 ## Features
-
-Allows you to create custom log templates to be able to print everything that happens in your application! Likewise, it also allows quick prints just as beautifully!
+- Log in multiple colors
+- Log texts
+- Log Maps
+- Log Error's/stacktrace.
+- Log Objects
+- Determine logs max horizontal lenght
 
 ## Getting started
 
@@ -12,7 +16,7 @@ In the `pubspec.yaml` of your flutter project, add the following dependency:
 ```yaml
 dependencies:
   ...
-  sandbox_logger: ^1.0.0
+  sandbox_logger: 
 ```
 
 Import it:
@@ -21,106 +25,180 @@ Import it:
 import 'package:sandbox_logger/sandbox_logger.dart';
 ```
 
-
-## Usage Exemples
-
-### Exemple of a quick log of object:
-*Colors, icons can be changed. The parameter headler, map and text are optional.*
+Use it:
 
 ```dart
-void main() {
-  // A model that will be used as exemple
-  _ModelForExemple exempleModel = _ModelForExemple(
-    name: 'Igor Miranda Souza',
-    age: 21,
-    hasBugs: true,
-    height: 1.82,
-    address: Address(
-      city: 'Silicon Valley',
-      country: 'California',
-    ),
-  );
+// Call the log function
+SandLog.text('Hello world');
+```
 
-  // Log in green when your methods have success!
-  SandLog.success(
-    header: 'Request made successfully!',
-    text: 'Status code: 200',
-    map: exempleModel.toMap(),
-  );
-  
-  // Log in red in your error handler when you got a error.
-  // An error is bad, but an error without a nice log is worse.
-  SandLog.error(
-    header: 'An error occurred in my request!',
-    text: 'ERRO 404! Invalid Route',
-  );
+# Concatenate log types and easily get a nice log at the end
 
-  // Log in yellow a warning to be aware when something happends
-  SandLog.warning(
-    header: 'The document coming from the api is huge! '
-        'Beware of large orders like this... A large file '
-        'like this will spend a lot of the user\'s internet to download it.',
-    text: ' [ Imagine here a huge value ]',
-  );
+## The models to be loged
+```dart 
+class Person {
+  final String name; final int age; final bool isAProgrammer;
+  const Person(this.name, this.age, this.isAProgrammer);
 
-  // Default log in white to check or see infos.
-  SandLog.info(
-    text: 'Is this variable correct? let\'s check',
-    header: 'The value that came from the api is ${exempleModel.age}',
-  ); 
+  // Needs to have a toString like this:
+  @override
+  String toString() => 'Person(name: $name, age: $age, isAProgrammer: $isAProgrammer)';
+}
+final map1 = {'name': 'Igor', 'age': 22};
+final map2 = {'name': 'Daniel', 'age': 38};
+final StackTrace stackTrace = StackTrace.fromString(fakeStackText);
+```
+## Using the log building types to build the final log
+```dart 
+// Building a log:
+SandLog
+    .text('This is a header text')
+    .error('FormatException: Invalid double', stackTrace)
+    .map( map1 )
+    .listOfMap( [ map1 , map2 ] )
+    .object( Person('Igor', 22, true) )
+    .listOfObject( [ Person('Igor', 22, true) , Person('Daniel', 38, true) ] );
+```
+
+![](https://raw.githubusercontent.com/igormidev/sandbox_logger/main/art/full_exemple_log.png)
+
+# Implementation of logs:
+
+## Text log: 
+```dart
+SandLog.text('This is a test text\nLets see the result');
+```
+
+## Map log:
+```dart
+final map = {'name': 'Igor', 'age': 22};
+SandLog.map(map);
+```
+
+## List of map log:
+```dart
+final map1 = {'name': 'Igor', 'age': 22};
+final map2 = {'name': 'Daniel', 'age': 38};
+SandLog.listOfMap([map1, map2]);
+```
+
+## Stacktrace logs:
+```dart
+try {
+  double.parse('text impossible to parse');
+} catch (error, stackTrace) {
+  SandLog.error(error, stackTrace);
 }
 ```
 
-The console:
+## Terminal output:
 
-![](https://raw.githubusercontent.com/igormidev/sandbox_logger/main/images/simple_log_exemple.png)
+![](https://raw.githubusercontent.com/igormidev/sandbox_logger/main/art/exemple_log_text_map_error.png)
+
+
+## Logging object and list of object:
+
+A object that has a `.toString()` with this pattern:
+
+```dart 
+class Person {
+  final String name;
+  final int age;
+  final bool isAProgrammer;
+  const Person(this.name, this.age, this.isAProgrammer);
+
+  // Needs to be a toString like this:
+  @override
+  String toString() => 'Person(name: $name, age: $age, isAProgrammer: $isAProgrammer)';
+}
+```
+
+That pattern of the *"toString()"* above can be casted to a map that will be logged
+
+```dart 
+final person1 = Person('Igor', 22, true);
+final person2 = Person('Daniel', 38, true);
+
+SandLog.object(person1); // Log 1 object
+
+SandLog.listOfObject([person1, person2]); // Log a list of object
+```
+
+
+## Terminal output:
+
+![](https://raw.githubusercontent.com/igormidev/sandbox_logger/main/art/exemple_log_objects.png)
+
+# Configurations
+
+## Using configurations for a specific log:
+This setting will only apply to this log. It is not a global/default setting as we will see below
+```dart
+SandLog
+  .text('Test of color & max horizontal lenght setters')
+  .setColorTo(LogColor.green) // Choose the desired color
+  .setMaxLength(30); // Set the max horizontal lenght
+```
+![](https://raw.githubusercontent.com/igormidev/sandbox_logger/main/art/setters_exemple.png)
+
+## Setting default configurations:
+This configuration will be used in all the logs as default values.
+Recomended to set this in the *main* function of the project
+```dart
+// This configuration will be valid to all logs
+SandLog.setLogConfiguration(LogConfigurations(
+  defaultMaxHorizontalLenght: 40,
+  defaultColor: LogColor.yellow,
+  defaultErrorColor: LogColor.magenta,
+));
+```
+Another possible setting is to change the border style:
+```dart
+final LogBorderSytle myCustomBorderStyle = LogBorderSytle(
+  topRightBorder: '╗',
+  topLeftBorder: '╔',
+  traceBorder: '═',
+  middleRightBorder: '╠',
+  middleLeftBorder: '╣',
+  connectorLeftBorder: '╠',
+  connectorRightBorder: '╣',
+  bottomRightBorder: '╝',
+  bottomLeftBorder: '╚',
+);
+
+SandLog.setDefaultLogConfiguration(LogConfigurations(
+  defaultBorderStyle: myCustomBorderStyle,
+));
+```
+## Important! Configure when to make logs
+The most important configuration is having a way to enable or disable the logs.
+For exemple: in a release apk that final users will use, you don't want logs
+to be printed.
+```dart
+SandLog.setDefaultLogConfiguration(LogConfigurations(
+  // Will only print when running debug mode, nothing will be logged in release
+  isLogActivated: kDebugMode, // Will only print is boolean is true, 
+));
+```
+
+# Other functionalities
+You can make a plain text log with any of the log colors
+These logs `will not` have any type of formatting.
+
+```dart
+logInBlack('Black text');
+logInBlue('Blue text');
+logInCyan('Cyan text');
+logInGreen('Green text');
+logInMagenta('Magenta text');
+logInRed('Red text');
+logInWhite('White text');
+logInYellow('Yellow text');
+```
+
+![](https://raw.githubusercontent.com/igormidev/sandbox_logger/main/art/log_in_exemple.png)
 
 ---
 
-### Example of a more complex, beautiful and `personalized` print:
-
-```dart
-void main() {
-  // A model that will be used as exemple
-  _ModelForExemple exempleModel = _ModelForExemple(
-    name: 'Igor Miranda Souza',
-    age: 21,
-    hasBugs: true,
-    height: 1.82,
-    address: Address(
-      city: 'Silicon Valley',
-      country: 'California',
-    ),
-  );
-  
-  // Build your own template log with beginning, middle and end!
-  //
-  // The normal sequence is a [headler] first, then an indeterminate
-  // number of [middle] and ending with [bottom].that
-  //
-  // Use [LogStringModel] to add a string and [LogMapModel] when you
-  // want to add a object to the list of [LogModel] that will be printed.
-  //
-  // Using only [headler] and ending with [bottom] without [middle]
-  // in the sequence is totaly okay to.
-  SandLog.logTemplateBuilder(<LogModel>[
-    LogStringModel.headler('This is a headler text'),
-    LogStringModel.middle('This is a middle text'),
-    LogMapModel.middle(exempleModel.toMap(), title: 'My Model:'),
-    LogStringModel.bottom('This is a final bottom text'),
-  ]);
-}
-```
-
-The console:
-
-![](https://raw.githubusercontent.com/igormidev/sandbox_logger/main/images/custom_log_exemple.png)
-
-See the complete code in the `/example` folder. 
-
-
-
-## Important!
-
-Note: It is dangerous to leave prints of http requests appearing on the console in production. Try creating a flag to only make your prints when in develop mode.
-
+Made with ❤ by https://github.com/igormidev <br>
+if you like the package, give a 👍
