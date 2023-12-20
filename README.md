@@ -142,17 +142,18 @@ SandLog
 ![](https://raw.githubusercontent.com/igormidev/sandbox_logger/main/art/setters_exemple.png)
 
 ## Setting default configurations:
-This configuration will be used in all the logs as default values.
+### This configuration will be used in all the logs as default values.
 Recomended to set this in the *main* function of the project
 ```dart
 // This configuration will be valid to all logs
 SandLog.setLogConfiguration(LogConfigurations(
+  ...
   defaultMaxHorizontalLenght: 40,
   defaultColor: LogColor.yellow,
   defaultErrorColor: LogColor.magenta,
 ));
 ```
-Another possible setting is to change the border style:
+### Another possible setting is to change the border style:
 ```dart
 final LogBorderSytle myCustomBorderStyle = LogBorderSytle(
   topRightBorder: '╗',
@@ -167,7 +168,18 @@ final LogBorderSytle myCustomBorderStyle = LogBorderSytle(
 );
 
 SandLog.setDefaultLogConfiguration(LogConfigurations(
+  ...
   defaultBorderStyle: myCustomBorderStyle,
+));
+```
+
+### You can also set the function that will print the lines:
+```dart
+SandLog.setDefaultLogConfiguration(LogConfigurations(
+  ...
+  linesPrinterFunction: (List<String> lines) {
+    print('''\n${lines.join('\n')}''');
+  },
 ));
 ```
 ## Important! Configure when to make logs
@@ -176,6 +188,7 @@ For exemple: in a release apk that final users will use, you don't want logs
 to be printed.
 ```dart
 SandLog.setDefaultLogConfiguration(LogConfigurations(
+  ...
   // Will only print when running debug mode, nothing will be logged in release
   isLogActivated: kDebugMode, // Will only print is boolean is true, 
 ));

@@ -1,6 +1,6 @@
 name: sandbox_logger
 description: A simple tool for more beautiful and colorful console prints.
-version: 2.0.1
+version: 2.1.0
 
 repository: https://github.com/igormidev/sandbox_logger
 homepage: https://github.com/igormidev/sandbox_logger
@@ -8,10 +8,14 @@ github: https://github.com/igormidev/sandbox_logger
 documentation: https://github.com/igormidev/sandbox_logger/blob/main/README.md
 
 environment:
-  sdk: '>=2.19.0 <3.0.0'
+  sdk: '>=2.19.0 <4.0.0'
 
 dependencies: 
   meta: ^1.8.0
+
+screenshots:
+  - description: The logo of the package.
+    path: art/logo.PNG
 
 dev_dependencies:
   lints: ^2.0.0

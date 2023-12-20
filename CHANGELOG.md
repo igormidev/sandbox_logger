@@ -1,9 +1,14 @@
+## [2.1.0]
+- Added logo to package
+- Added option to customize the printer function
+- README updated 
+
 ## [2.0.1]
-- Document assert 
+- README assert 
 
 ## [2.0.0] Big Update
 - **Breaking changes:** Changed way of logging, using a builder pattern
-- Readme update
+- README updated
 - 100% test coverage in all usecases
 - Implemented the builder pattern
 - New arts
@@ -15,7 +20,7 @@
 - Assert in map log bug
 
 ## [1.0.4]
-- Readme is better now.
+- README is better now.
 
 ## [1.0.3]
 - `print` has changed to `log`.

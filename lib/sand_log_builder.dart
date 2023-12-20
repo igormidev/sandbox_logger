@@ -144,7 +144,12 @@ class SandLog {
           logModel: logModel, borderType: borderType, color: color);
       lines.addAll(linesWithColorAndBorder);
     });
-    print('\n${lines.join('\n')}');
+
+    if (_defaultConfiguration.linesPrinterFunction == null) {
+      print('''\n${lines.join('\n')}''');
+    } else {
+      _defaultConfiguration.linesPrinterFunction?.call(lines);
+    }
   }
 
   List<String> _getLogLines({

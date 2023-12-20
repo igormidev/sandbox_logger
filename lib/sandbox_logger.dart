@@ -22,3 +22,11 @@ part 'usecases/usecase_split_bigger_lines_to_smaller_lines.dart';
 part 'usecases/usecase_get_jsons_from_string.dart';
 part 'usecases/usecase_transform_to_string_to_map.dart';
 part 'sand_log_builder.dart';
+
+test() {
+  SandLog.setDefaultLogConfiguration(LogConfigurations(
+    linesPrinterFunction: (List<String> lines) {
+      print('''\n${lines.join('\n')}''');
+    },
+  ));
+}

@@ -12,29 +12,29 @@ mixin UsecasePutColorInLines {
 }
 
 /// Will print the [text] in `green` color to the console.
-void logInGreen(String text) => _logInAnyColor(text, LogColor.green.anciCode);
+void logInGreen(Object text) => _logInAnyColor(text, LogColor.green.anciCode);
 
 /// Will print the [text] in `black` color to the console.
-void logInBlack(String text) => _logInAnyColor(text, LogColor.black.anciCode);
+void logInBlack(Object text) => _logInAnyColor(text, LogColor.black.anciCode);
 
 /// Will print the [text] in `white` color to the console.
-void logInWhite(String text) => _logInAnyColor(text, LogColor.white.anciCode);
+void logInWhite(Object text) => _logInAnyColor(text, LogColor.white.anciCode);
 
 /// Will print the [text] in `red` color to the console.
-void logInRed(String text) => _logInAnyColor(text, LogColor.red.anciCode);
+void logInRed(Object text) => _logInAnyColor(text, LogColor.red.anciCode);
 
 /// Will print the [text] in `yellow` color to the console.
-void logInYellow(String text) => _logInAnyColor(text, LogColor.yellow.anciCode);
+void logInYellow(Object text) => _logInAnyColor(text, LogColor.yellow.anciCode);
 
 /// Will print the [text] in `blue` color to the console.
-void logInBlue(String text) => _logInAnyColor(text, LogColor.blue.anciCode);
+void logInBlue(Object text) => _logInAnyColor(text, LogColor.blue.anciCode);
 
 /// Will print the [text] in `cyan` color to the console.
-void logInCyan(String text) => _logInAnyColor(text, LogColor.cyan.anciCode);
+void logInCyan(Object text) => _logInAnyColor(text, LogColor.cyan.anciCode);
 
 /// Will print the [text] in `magenta` color to the console.
-void logInMagenta(String text) =>
+void logInMagenta(Object text) =>
     _logInAnyColor(text, LogColor.magenta.anciCode);
 
-void _logInAnyColor(String text, String colorAnci) =>
+void _logInAnyColor(Object text, String colorAnci) =>
     print('$colorAnci$text${LogColor.resetColor.anciCode}');
